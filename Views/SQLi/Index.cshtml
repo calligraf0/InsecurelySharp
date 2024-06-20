@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "SQL Injection";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Overview</h2>
+    <p>
+        A SQL injection attack consists of insertion or “injection” of a SQL query via the input data from the client to the application.<br/>
+        A successful SQL injection exploit can read sensitive data from the database, modify database data (Insert/Update/Delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file present on the DBMS file system and in some cases issue commands to the operating system.<br/>
+        SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input in order to affect the execution of predefined SQL commands.
+         <ul>
+            <li>SQL injection attacks allow attackers to spoof identity, tamper with existing data, cause repudiation issues such as voiding transactions or changing balances, allow the complete disclosure of all data on the system, destroy the data or make it otherwise unavailable, and become administrators of the database server.</li>
+            <li>SQL Injection is very common with PHP and ASP applications due to the prevalence of older functional interfaces. Due to the nature of programmatic interfaces available, J2EE and ASP.NET applications are less likely to have easily exploited SQL injections.</li>
+            <li>The severity of SQL Injection attacks is limited by the attacker’s skill and imagination, and to a lesser extent, defense in depth countermeasures, such as low privilege connections to the database server and so on. In general, consider SQL Injection a high impact severity.</li>
+        </ul>
+
+        The consequences of these kind of attacks vary depending on what the query allows the attacker to do, typically this class of vulnerabilities impacts: <b>Confidentiality</b>, <b>Authentication</b>, <b>Authorization</b>, <b>Integrity</b>.
+    </p>
+
+
+    <h2 class="display-8">Examples</h2>
+    <p>
+       The following C# code dynamically constructs and executes a SQL query that searches for items matching a specified name. The query restricts the items displayed to those where owner matches the user name of the currently-authenticated user.
+       <pre><code class=block>
+        ...
+        string userName = ctx.getAuthenticatedUserName();
+        string query = "SELECT * FROM items WHERE owner = "'"
+                        + userName + "' AND itemname = '"
+                        + ItemName.Text + "'";
+        sda = new SqlDataAdapter(query, conn);
+        DataTable dt = new DataTable();
+        sda.Fill(dt);
+        ...
+       </code></pre>
+       However, because the query is constructed dynamically by concatenating a constant base query string and a user input string, the query only behaves correctly if itemName does not contain a single-quote character. If an attacker with the user name wiley enters the string <code>name' OR 'a'='a</code> for itemName, then the query becomes the following:
+       <pre><code>
+        SELECT * FROM items
+        WHERE owner = 'gabriele'
+        AND itemname = 'name' OR 'a'='a';
+       </code></pre>
+    </p>
+
+    <h2 class="display-8">How to identify if you are vulnerable</h2>
+    <p>
+        <ul>
+            <li>The application does not used parametrized queries.</li>
+            <li>The application uses a custom built "query builder" factory and does so incorrectly.</li>
+            <li>Queries handle direct, unsanitized untrusted input.</li>
+        </ul>
+    </p>
+
+    <h2 class="display-8">How to protect yourself</h2>
+    <p>
+        <ul>
+            <li>Use parametrized queries.</li>
+            <li>Lower the number of untrusted inputs handled by the queries.</li>
+            <li>Use stored procedures.</li>
+            <li>Allow list input validation.</li>
+            <li>Escape all untrusted inputs.</li>
+            <li>Enforce least privilege with database roles.</li>
+        </ul>
+
+        For a more detailed and in-depth list of solutions: <a class="text-dark" href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html">Prevention cheatsheet</a>
+    </p>
+</div>
+<div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="SQLi" asp-action="Exercise">Next: Exercise</a>
+    </div>
+</div>

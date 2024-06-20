@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "General Tips";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <p>
+        Before jumping into .NET specific tips for secure coding, let's see what generally applies to all programming languages.<br />
+        During the development of any kind of application it is important to keep in mind all of the security standards agreed upon during the requirements and design phases.<br />
+        This is important to be validated and asserted on each step from development.
+    </p>
+    
+    <div>
+        <h2 class="display-8">Coding</h2>
+
+        <p>
+            There are many <b>DOs</b> and <b>DO NOTs</b> when developing a secure application, let's see some of them:
+            <ul>
+                <li>When thinking of a user, think of me (if I see something I <b>will</b> try and break it).</li>
+                <li><b>Never</b> concatenate untrusted inputs into SQL queries</li>
+                <li><b>Never</b> concatenate untrusted inputs into functions without validating the input</li>
+                <li>... just avoid unstrusted input concatenation in sensitive contexts altogether.</li>
+                <li>Always perform role validation/security checks in, one, separate, higher level, logic controller. (Do it right, once, never forget it again)</li>
+                <li>If something is deprecated, does not matter how many points the suggestion has gained on StackOverflow, <b>DO NOT USE IT</b>.</li>
+                <li>Code review is a powerful weapon, be sure you doing it right.</li>
+                <li>Linters and static code analysis tools are your friend.</li>
+                <li>1980s are amazing, but that's NOT an excuse to use cleartext protocols.</li>
+                <li>Do not roll your own crypto.</li>
+                <li>Handle ALL exceptions and never show your stacktraces.</li>
+                <li>Encode != Encrypt</li>
+                <li>You shall <b>NOT</b> log any sensitive data.</li>
+                <li>If a user should not use it, such user should not see it.</li>
+                <li>Hardocde your secrets and someone (me) is going to find them (a.k.a. <b>please do not hardcode secrets</b>).</li>
+                <li><b>EDGE CASES</b> (also see <a class="text-dark" href="https://en.wikipedia.org/wiki/Murphy's_law">Murphy's law</a>).</li>
+            </ul>
+        </p>
+    </div>
+
+    <div>
+        <h2 class="display-10">Deployment</h2>
+
+        <p> 
+            The same applies to deployment:
+             <ul>
+                <li>Lock down the config files.</li>
+                <li>Remove all aspects of configuration that are not in use (a.k.a. reducing the attack surface).</li>
+                <li>Encrypt sensitive parts of the all configurations (e.g web.config using aspnet_regiis -pe).</li>
+                <li>Avoid storing user files in your webroot.</li>
+                <li><b>Disable</b> dir listing. Everywhere. </li>
+                <li>Backups shall not reside inside your webroot (no, not even your backup.zip, deployment.zip, etc...)</li>
+                <li>Update. Your. Softwares.</li>
+                <li>Always follow the <b>Least Privilege</b> principle.</li>
+                <li>Ensure correct permissions and ACLs are applied to every folder.</li>
+        </p>
+    </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="SecurityCheatsheet">Previous: The .NET Framework Security Cheatsheet</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="IntroducingOWASP">Next: Introducing OWASP</a>
+    </div>
+</div>

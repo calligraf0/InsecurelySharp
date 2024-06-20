@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "XML External Entities (XXE)";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Overview</h2>
+    <p>
+        An XML External Entity attack is a type of attack against an application that parses XML input. This can occur when XML input containing a reference to an external entity is processed by a weakly configured XML parser.<br />
+        This attack may lead to the disclosure of confidential data, denial of service, server side request forgery, port scanning from the perspective of the machine where the parser is located, and other system impacts.
+    </p>
+    <p>
+        The XML 1.0 standard defines the structure of an XML document. The standard defines a concept called an <b>entity</b>, which is a storage unit of some type.<br />
+        There are a few different types of entities, external general/parameter parsed entity often shortened to <b>external entity</b>, that can access local or remote content via a declared system identifier.
+        The <code>SYSTEM</code> identifier is assumed to be a URI that can be dereferenced (accessed) by the XML processor when processing the entity. The XML processor then replaces occurrences of the named external entity with the contents dereferenced by the <code>SYSTEM</code> identifier.<br />
+        If the system identifier contains tainted data and the XML processor dereferences this tainted data, the XML processor may disclose confidential information normally not accessible by the application.<br />
+        Similar attack vectors apply the usage of external DTDs, external stylesheets, external schemas, etc. which, when included, allow similar external resource inclusion style attacks.
+    </p>
+
+    <h2 class="display-8">Risk Factors</h2>
+    <p>
+        <ul>
+            <li>The application parses XML documents.</li>
+            <li>Tainted data is allowed within the system identifier portion of the entity, within the document type declaration (DTD).</li>
+            <li>The XML processor is configured to validate and process the DTD.</li>
+            <li>The XML processor is configured to resolve external entities within the DTD.</li>
+        </ul>
+    </p>
+
+    <p>
+        <h2 class="display-8">.NET XML Parsers</h2>
+        <p>
+            Here we present a (non exhaustive) list of commonly used XML parsers for the .NET Framework:
+        </p>
+        <div style="overflow-x: auto;">
+            <table class="table d-md-table">
+                <thead>
+                    <tr class="thead-light">
+                        <th>Attack Type</th>
+                        <th>LINQ to XML</th>
+                        <th>XmlDictionaryReader</th>
+                        <th>XmlDocument (4.5.2-)</th>
+                        <th>XmlDocument (4.5.2+)</th>
+                        <th>XmlNodeReader</th>
+                        <th>XmlReader</th>
+                        <th>XmlTextReader(4.5.2-)</th>
+                        <th>XmlTextReader(4.5.2+)</th>
+                        <th>XPathNavigator(4.5.2-)</th>
+                        <th>XPathNavigator(4.5.2+)</th>
+                        <th>XslCompiledTransform</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>External entity Attacks</td>
+                        <td>Safe</td>
+                        <td>Safe</td>
+                        <td>Vulnerable</td>
+                        <td>Safe</td>
+                        <td>Safe</td>
+                        <td>Safe</td>
+                        <td>Vulnerable</td>
+                        <td>Safe</td>
+                        <td>Vulnerable</td>
+                        <td>Safe</td>
+                        <td>Safe</td>
+                    </tr>
+                    <tr>
+                        <td>Billion Laughs</td>
+                        <td>Vulnerable</td>
+                        <td>N.a.</td>
+                        <td>Vulnerable</td>
+                        <td>Vulnerable</td>
+                        <td>Safe</td>
+                        <td>Safe</td>
+                        <td>Vulnerable</td>
+                        <td>Vulnerable</td>
+                        <td>Vulnerable</td>
+                        <td>Vulnerable</td>
+                        <td>Safe</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </p>
+
+    <h2 class="display-8">Prevention</h2>
+    <p>
+        The safest way to prevent XXE is always to disable DTDs (External Entities) completely.<br />
+        Disabling DTDs also makes the parser secure against denial of services (DOS) attacks such as <b>Billion Laughs</b>. If it is not possible to disable DTDs completely, then external entities and external document type declarations must be disabled in the way that's specific to each parser.<br />
+    </p>
+    <p>
+        For a detailed guide on how to prevent XML External Entity vulnerabilities, refer to the <a class="text-dark" href="https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html">OWASP XXE Prevention Cheatsheet</a>. 
+    </p>
+</div>
+
+
+<div class="d-flex justify-content-between">
+    <div>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="XXE" asp-action="Exercise">Next: Exercise</a>
+    </div>
+</div>

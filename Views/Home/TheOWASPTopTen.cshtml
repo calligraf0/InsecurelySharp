@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "The OWASP Top Ten";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <p>
+        <blockquote class="text-right">
+            <p> 
+                The OWASP Top 10 is a standard awareness document for developers and web application security.<br /> 
+                It represents a broad consensus about the most critical security risks to web applications.<br />
+                Companies should adopt this document and start the process of ensuring that their web applications minimize these risks.<br />
+                Using the OWASP Top 10 is perhaps the most effective first step towards changing the software development culture within your organization into one that produces more secure code.
+            </p>
+            <footer class="blockquote-footer"> <cite title="Source Title">OWASP Foundation</cite></footer>
+        </blockquote>
+       
+    </p>
+    
+    <div class="d-flex justify-content-between">
+        <div>
+            <h2 class="display-8">OWASP 2017 Top Ten</h2>
+
+            <p>
+                <ul>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A1_2017-Injection.html">A1:2017-Injection</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A2_2017-Broken_Authentication.html">A2:2017-Broken Authentication</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure.html">A3:2017-Sensitive Data Exposure</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A4_2017-XML_External_Entities_(XXE).html">A4:2017-XML External Entities (XXE)</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A5_2017-Broken_Access_Control.html">A5:2017-Broken Access Control</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">A6:2017-Security Misconfiguration</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A7_2017-Cross-Site_Scripting_(XSS).html">A7:2017-Cross-Site Scripting (XSS)</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A8_2017-Insecure_Deserialization.html">A8:2017-Insecure Deserialization</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities.html">A9:2017-Using Components with Known Vulnerabilities</a></li>
+                    <li><a class="text-dark" href="https://owasp.org//www-project-top-ten/2017/A10_2017-Insufficient_Logging%2526Monitoring.html">A10:2017-Insufficient Logging & Monitoring</a></li>
+                </ul>
+            </p>
+        </div>
+        <h2 class="display-8">→</h2>
+        <div>
+            <h2 class="display-8">OWASP 2021 Top Ten</h2>
+
+            <p>
+                <ul>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021-Broken Access Control</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A02_2021-Cryptographic_Failures/">A02:2021-Cryptographic Failures</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A03_2021-Injection/">A03:2021-Injection</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A04_2021-Insecure_Design/">A04:2021-Insecure Design</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">A05:2021-Security Misconfiguration</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/">A06:2021-Vulnerable and Outdated Components</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">A07:2021-Identification and Authentication Failures</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/">A08:2021-Software and Data Integrity Failures</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/">A09:2021-Security Logging and Monitoring Failures</a></li>
+                    <li><a class="text-dark" href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/">A10:2021-Server-Side Request Forgery</a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="IntroducingOWASP">Previous: Introducing OWASP</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-primary" asp-area="" asp-controller="Home" asp-action="Vulnerabilities">Next: Vulnerabilities</a>
+    </div>
+</div>

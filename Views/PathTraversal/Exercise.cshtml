@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Path Traversal Exploitation";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>Feel free to upload any valid files!</p>
+    <form method="post" asp-area="" asp-controller="PathTraversal" asp-action="Upload" enctype="multipart/form-data">
+        <input type="file" name="files" multiple="multiple" />
+        <input type="submit" class="btn btn-primary" name="Upload" value="Upload" /> 
+    </form>
+</div>
+
+<!--
+TODO: download
+<div class="text-center">
+    <p>Feel free to download any valid files!</p>
+    <form method="post" asp-area="" asp-controller="PathTraversal" asp-action="Download" enctype="multipart/form-data">
+        <input type="text" name="file" />
+        <input type="submit" class="btn btn-primary" name="Download" value="Download" /> 
+    </form>
+</div>
+-->
+
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="PathTraversal" asp-action="Index">Previous: Path Traversal</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="PathTraversal" asp-action="Solution">Next: Solution</a>
+    </div>
+</div>

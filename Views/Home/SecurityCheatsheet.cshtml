@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "The .NET Framework Security Cheatsheet";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <div>
+        <h2 class="display-8">The .NET Framework</h2>
+
+        <p>
+            This laboratory is built using the <b>.NET Framework.</b><br />
+            The .NET Framework is Microsoft's principal platform for enterprise development. It is the supporting API for ASP.NET, Windows Desktop applications, Windows Communication Foundation services, SharePoint, Visual Studio Tools for Office and other technologies.
+        </p
+    </div>
+
+    <div>
+        <h2 class="display-10">Updating the Framework</h2>
+
+        <p>
+            The .NET Framework is kept up-to-date by Microsoft with the Windows Update service. Developers do not normally need to run separate updates to the Framework. Windows Update can be accessed at Windows Update or from the Windows Update program on a Windows computer.<br/>
+            Other individual frameworks can be kept up to date using <b>NuGet</b>. As Visual Studio prompts for updates, build it into your lifecycle.<br/>
+
+            Remember that third-party libraries have to be updated <b>separately</b> and not all of them use NuGet. Some may require a separate update effort.<br/>
+        </p>
+    </div>
+
+    <div>
+        <h2 class="display-10">Security Announcements</h2>
+
+        <p> One of the main things to do correctly when developing is <b>keeping up do date</b> with the latest security improvements.</p>
+        <p>
+            Receive security notifications by selecting the "Watch" button at the following repositories:<br/>
+                <ul>
+                    <li> .NET Core Security Announcements</li>
+                    <li> ASP.NET Core & Entity Framework Core Security Announcements</li>
+                </ul>
+        </p>
+    </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="SecureCoding2">Previous: Secure Coding - Phases</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="GeneralTips">Next: General Tips</a>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Command Injection";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Overview</h2>
+    <p>
+    Command injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application.<br />
+    These attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.<br />
+    In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application.<br />
+    Command injection attacks are possible largely due to insufficient input validation.  
+    </p>
+
+
+    <h2 class="display-8">Examples</h2>
+    <p>
+           The following C code is a wrapper around the UNIX command cat which prints the contents of a file to standard output:
+           <pre><code class=block>
+            #include <stdio.h>
+            #include <unistd.h>
+
+            int main(int argc, char **argv) {
+                char cat[] = "cat ";
+                char *command;
+                size_t commandLength;
+
+                commandLength = strlen(cat) + strlen(argv[1]) + 1;
+                command = (char *) malloc(commandLength);
+                strncpy(command, cat, commandLength);
+                strncat(command, argv[1], (commandLength - strlen(cat)) );
+
+                system(command);
+                return (0);
+            }
+           </code></pre>
+    </p>
+    <p>
+        Used normally, the output is simply the contents of the file requested:
+        <pre><code>
+            $ ./catWrapper Story.txt
+            When last we left our heroes...
+       </code></pre>
+       
+    </p>
+    <p>
+        However, if we add a semicolon and another command to the end of this line, the command is executed by catWrapper with no complaint:
+        <pre><code>
+            $ ./catWrapper "Story.txt; ls"
+            When last we left our heroes...
+            Story.txt               doubFree.c              nullpointer.c
+            unstosig.c              www*                    a.out*
+            format.c                strlen.c                useFree*
+            catWrapper*             misnull.c               strlength.c             useFree.c
+            commandinjection.c      nodefault.c             trunc.c                 writeWhatWhere.c
+       </code></pre>
+    </p>
+    <p>
+        The following code from a privileged program uses the environment variable $APPHOME to determine the application’s installation directory, and then executes an initialization script in that directory.
+        <pre><code>
+            ...
+            char* home=getenv("APPHOME");
+            char* cmd=(char*)malloc(strlen(home)+strlen(INITCMD));
+            if (cmd) {
+                strcpy(cmd,home);
+                strcat(cmd,INITCMD);
+                execl(cmd, NULL);
+            }
+            ...
+        </code></pre>
+        As with the previous example, the code in this code snipped allows an attacker to execute arbitrary commands with the elevated privilege of the application.<br />
+        In this example, the attacker can modify the environment variable $APPHOME to specify a different path containing a malicious version of INITCMD.<br />
+        Because the program does not validate the value read from the environment, by controlling the environment variable, the attacker can fool the application into running malicious code.
+    </p>
+    <h2 class="display-8">How to identify if you are vulnerable</h2>
+    <p>
+        <ul>
+            <li>The application uses system APIs that execute.</li>
+            <li>Untrusted input is used inside such APIs with little or no validation.</li>
+        </ul>
+    </p>
+
+    <h2 class="display-8">How to protect yourself</h2>
+    <p>
+        Ideally, a developer should use existing API for their language.<br />
+        For example (Java): Rather than use <code>Runtime.exec()</code> to issue a ‘mail’ command, use the available Java API located at  <code>javax.mail.*</code>.
+
+        If no such available API exists, the developer should scrub all input for malicious characters. Implementing a positive security model would be most efficient.<br />
+        Typically, it is much easier to define the legal characters than the illegal characters.
+
+    </p>
+</div>
+<div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="CommandInjection" asp-action="Exercise">Next: Exercise</a>
+    </div>
+</div>

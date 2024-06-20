@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Vulnerabilities";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Web</h2>
+
+    <p>Below there is a list of vulnerabilities present in <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Index">InsecurelySharp</a></p>
+    <p>
+        <ul class="flex-grow-1">
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="PathTraversal" asp-action="Index">Path Traversal</a>
+            </li>
+            
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="SQLi" asp-action="Index">SQL Injection (SQLi)</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="XSS" asp-action="Index">Cross Site Scripting (XSS)</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="XXE" asp-action="Index">XML External Entities (XXE)</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="CommandInjection" asp-action="Index">Command Injection</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="SSRF" asp-action="Index">Server Side Request Forgery (SSRF)</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="HardcodedSecrets" asp-action="Index">Hardcoded Secrets</a>
+            </li>
+
+            <li class="list-item">
+                <a class="text-dark" asp-area="" asp-controller="LoggingSensitiveInformation" asp-action="Index">Logging Sensitive Information</a>
+            </li>
+        </ul>
+    </p>
+</div>

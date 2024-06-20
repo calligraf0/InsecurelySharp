@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Secure Coding";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Phases</h2>
+    <div>
+        <p>
+            <b>1. Requirement Analysis</b><br/>
+            Define project goals into defined functions and operations of the intended application. This involves the process of gathering and interpreting facts, diagnosing problems, and recommending improvements to the system.<br/>
+            Project goals will be further aided by analysis of end-user information needs and the removal of any inconsistencies and incompleteness in these requirements.
+        </p>
+        <p>
+            <b>2. Design</b><br/>
+             At this step, desired features and operations are described in detail, including screen layouts, business rules, process diagrams, pseudocode, and other documentation.
+        </p>
+        <p>
+            <b>3. Development</b><br/>
+            The real code is written here.<br />
+            <p class="text-center"">
+                <img src="https://imgs.xkcd.com/comics/real_programmers.png" width="50%" height="50%"/>
+            </p>
+        </p>
+        <p>
+            <b>4. Testing</b><br/>
+             All the modules are brought together into a special testing environment, then checked for errors, bugs, and interoperability.<br/>
+             During this phase functionality tests are performed, as well as security assessments to reduce deployment errors as well as security risks.
+        </p>
+        <p>
+            <b>5. Implementation</b><br/>
+             This is the final stage of initial development, where the software is put into production and runs actual business.<br />
+             Here system administrators will handle the setup and follow the installation procedures, setup the production and pre production environments and start their own deployment lifecycle.
+        </p>
+        <p>
+            <b>6. Maintainance</b><br/>
+             During the maintenance stage of the SDLC, the system is assessed/evaluated to ensure it does not become obsolete. This is also where changes are made to initial software.
+        </p>
+    </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="SecureCoding">Previous: Secure Coding</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="Home" asp-action="SecurityCheatsheet">Next:  The .NET Framework Security Cheatsheet</a>
+    </div>
+</div>

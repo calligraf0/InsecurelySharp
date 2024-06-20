@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Path Traversal";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">Overview</h2>
+    <p>
+        A path traversal attack (also known as directory traversal) aims to access files and directories that are stored outside the web root folder.<br />
+        By manipulating variables that reference files with “dot-dot-slash (../)” sequences and its variations or by using absolute file paths, it may be possible to access arbitrary files and directories stored on file system including application source code or configuration and critical system files.<br />
+        It should be noted that access to files is limited by system operational access control (such as in the case of locked or in-use files on the Microsoft Windows operating system).<br />
+    </p>
+    <p>This attack is also known as “dot-dot-slash”, “directory traversal”, “directory climbing” and “backtracking”.</p>
+
+    <h2 class="display-8">Absolute Path Traversal</h2>
+    <p>
+        The vulnerable application allows the attacker to provide a full path, such as:
+        <ul>
+            <li>http://testsite.com/get?f=/etc/passwd</li>
+            <li>http://testsite.com/get.asp?f=C:\\Windows\\System32\\cmd.exe</li>
+        </ul>
+
+        When the web server returns information about errors in a web application, it is much easier for the attacker to guess the correct locations (e.g. path to the file with a source code, which then may be displayed).
+    </p>
+    <h2 class="display-8">Relative Path Traversal</h2>
+    <p>
+        The vulnerable application only allows the attacker to provide a relative path, such as:
+        <ul>
+            <li>http://testsite.com/get?f=../../../../../../../etc/passwd</li>
+            <li>http://testsite.com/get.asp?f=..\\..\\..\\..\\..\\..\\Windows\\System32\\cmd.exe</li>
+        </ul>
+    </p>
+
+    <h2 class="display-8">How to identify if you are vulnerable</h2>
+    <p>
+        <ul>
+            <li>Be sure you understand how the underlying operating system will process filenames handed off to it.</li>
+            <li>Don’t store sensitive configuration files inside the web root.</li>
+            <li>For Windows IIS servers, the web root should not be on the system disk, to prevent recursive traversal back to system directories.</li>
+        </ul>
+    </p>
+
+    <h2 class="display-8">How to protect yourself</h2>
+    <p>
+        <ul>
+            <li>Prefer working without user input when using file system calls.</li>
+            <li>Use indexes rather than actual portions of file names when templating or using language files (ie value 5 from the user submission = Italian, rather than expecting the user to return “Italian”).</li>
+            <li>Ensure the user cannot supply all parts of the path – surround it with your path code.</li>
+            <li>Validate the user’s input by only accepting known good – do not sanitize the data</li>
+            <li>Use chrooted jails and code access policies to restrict where the files can be obtained or saved to</li>
+            <li>If forced to use user input for file operations, normalize the input before using in file io API’s, such as Java's <a class="text-dark" href="https://docs.oracle.com/javase/7/docs/api/java/net/URI.html#normalize()">normalize()</a>.</li>
+        </ul>
+    </p>
+
+    <h2 class="display-8">Example payloads</h2>
+    <p>
+        <ul>
+            <li>%2e%2e%2f represents ../</li>
+            <li>%2e%2e/ represents ../</li>
+            <li>..%2f represents ../ </li>
+            <li>%2e%2e%5c represents ..\</li>
+            <li>%2e%2e\ represents ..\</li>
+            <li>..%5c represents ..\</li>
+            <li>%252e%252e%255c represents ..\ </li>
+            <li>..%255c represents ..\</li>
+            <li>and so on.</li>
+        </ul>
+    </p>
+</div>
+<div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="PathTraversal" asp-action="Exercise">Next: Exercise</a>
+    </div>
+</div>

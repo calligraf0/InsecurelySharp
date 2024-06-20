@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Logging Sensitive Information";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div>
+    <h2 class="display-8">What to avoid</h2>
+    <p>
+        Never log data unless it is legally sanctioned. For example intercepting some communications, monitoring employees, and collecting some data without consent may all be illegal.<br />
+        Never exclude any events from "known" users such as other internal systems, "trusted" third parties, search engine robots, uptime/process and other remote monitoring systems, pen testers, auditors. However, you may want to include a classification flag for each of these in the recorded data.<br />
+        The following should not usually be recorded directly in the logs, but instead should be removed, masked, sanitized, hashed or encrypted:
+        <ul>
+            <li>Application source code</li>
+            <li>Session identification values (consider replacing with a hashed value if needed to track session specific events)</li>
+            <li>Access tokens</li>
+            <li>Sensitive personal data and some forms of personally identifiable information (PII) e.g. health, government identifiers, vulnerable people</li>
+            <li>Authentication passwords</li>
+            <li>Database connection strings</li>
+            <li>Encryption keys and other master secrets</li>
+            <li>Bank account or payment card holder data</li>
+            <li>Data of a higher security classification than the logging system is allowed to store</li>
+            <li>Commercially-sensitive information</li>
+            <li>Information it is illegal to collect in the relevant jurisdictions</li>
+            <li>Information a user has opted out of collection, or not consented to e.g. use of do not track, or where consent to collect has expired</li>
+        </ul>
+    </p>
+    <p>
+        Sometimes the following data can also exist, and whilst useful for subsequent investigation, it may also need to be treated in some special manner before the event is recorded:
+        <ul>
+            <li>File paths</li>
+            <li>Database connection strings</li>
+            <li>Internal network names and addresses</li>
+            <li>Non sensitive personal data (e.g. personal names, telephone numbers, email addresses)</li>
+        </ul>
+
+        Consider using personal data de-identification techniques such as deletion, scrambling or pseudonymization of direct and indirect identifiers where the individual's identity is not required, or the risk is considered too great.<br />
+        In some systems, sanitization can be undertaken post log collection, and prior to log display.
+    </p>
+</div>

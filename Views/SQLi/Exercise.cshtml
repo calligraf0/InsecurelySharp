@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "SQL Injection Exploitation";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>View a sample of our simple <b>Query article</b> API: <a class="text-dark" asp-area="" asp-controller="SQLi" asp-action="Query" asp-route-uuid="1">Article 1</a></p>
+
+    <p>
+        Or try below with our <b>Search article</b> API!
+    </p>
+
+    <hr />
+    
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="text" id="querytext" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-primary" onclick="search()">
+            <i class="fas fa-search">Search</i>
+        </button>
+    </div>
+    
+    <div class="card" style="margin-top: 10px">
+        <pre id="article">
+        NO DATA
+        </pre>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="SQLi" asp-action="Index">Previous: SQL Injection</a>
+    </div>
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="SQLi" asp-action="Solution">Next: Solution</a>
+    </div>
+</div>
+
+<script async>
+    function search() {
+        let q = $("#querytext").val()
+        $.getJSON(``)
+        $.getJSON(`/SQLi/Search?text=${q}`, function(json) {
+          let data = JSON.stringify(json);
+          $("#article").text(data);
+        });
+    }
+</script>

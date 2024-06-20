@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Server Side Request Forgery (SSRF) Solution";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>Get <a href="/SSRF/GetSafe?resource=file1.jpg">file1.jpg</a></p>
+    <p>Get <a href="/SSRF/GetSafe?resource=file2.jpg">file2.jpg</a></p>
+    <p>Get <a href="/SSRF/GetSafe?resource=file3.txt">file3.txt</a></p>
+    <p>Get <a href="/SSRF/GetSafe?resource=file4.txt">file4.txt</a></p>
+</div>
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="SSRF" asp-action="Exercise">Previous: Exercise</a>
+    </div>
+    <div>
+    </div>
+</div>

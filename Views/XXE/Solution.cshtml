@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "XXE Solution";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <p>
+        Try our XML Validation API!
+    </p>
+
+    <hr />
+    
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="text" id="xml" name="xml" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-primary" onclick="validate()">
+            <i class="fas fa-search">Validate</i>
+        </button>
+    </div>
+    
+    <div class="card" style="margin-top: 10px">
+        <pre id="result">
+        NO DATA
+        </pre>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="text-light btn btn-secondary" asp-area="" asp-controller="XXE" asp-action="Exercise">Previous: Exercise</a>
+    </div>
+    <div>
+    </div>
+</div>
+
+<script async>
+    function validate() {
+        let x = $("#xml").val()
+        $.post("/XXE/XMLProcessSafe", {"xml":x}, function(data, textStatus) {
+          $("#result").text(data.value);
+        });
+    }
+</script>
